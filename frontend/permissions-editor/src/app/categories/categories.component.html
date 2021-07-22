@@ -9,7 +9,7 @@
                     <button mat-mini-fab color="primary">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button mat-mini-fab color="primary">
+                    <button mat-mini-fab color="primary" (click)="selectAll()">
                         <mat-icon>check_box_outline_blank</mat-icon>
                     </button>
                     <button mat-mini-fab color="warn">
@@ -17,11 +17,11 @@
                     </button>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-list class="scrollable">
-                        <mat-list-item *ngFor="let category of categories" (click)="selectCategory(category)">
+                    <mat-selection-list class="scrollable" #categoriesList>
+                        <mat-list-option *ngFor="let category of categories" (click)="selectCategory(category)">
                             <h3 matLine>{{category.text}}</h3>
-                        </mat-list-item>
-                    </mat-list>
+                        </mat-list-option>
+                    </mat-selection-list>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>

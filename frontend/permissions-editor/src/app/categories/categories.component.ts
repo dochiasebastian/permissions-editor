@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatOption } from '@angular/material/core';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
+import { MaterialModule } from '../material.module';
 
 @Component({
   selector: 'app-categories',
@@ -32,7 +35,10 @@ export class CategoriesComponent implements OnInit {
       _id: '2gegrg',
       text: 'Useless'
     },
-  ]
+  ];
+
+  @ViewChild('categoriesList') categoriesList: MatSelectionList| undefined;
+  allSelected = false;
 
   constructor() { }
 
@@ -51,6 +57,16 @@ export class CategoriesComponent implements OnInit {
     }
 
     this.currentCategory = emptyCategory;
+  }
+
+  selectAll() {
+    this.allSelected = !this.allSelected;  // to control select-unselect
+      
+      if (this.allSelected) {
+        this.categoriesList!.options.forEach( (item : MatListOption) => item.selected = true);
+      } else {
+        this.categoriesList!.options.forEach( (item : MatListOption) => {item.selected = false});
+      }
   }
 
 }
