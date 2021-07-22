@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  currentCategory: { _id: string; text: string; } = {
+    _id: '',
+    text: ''
+  };
 
   categories = [
     {
@@ -33,6 +37,20 @@ export class CategoriesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.resetCategory();
+  }
+
+  selectCategory(category: {_id: string, text: string}) {
+    this.currentCategory = category;
+  }
+
+  resetCategory() {
+    const emptyCategory = {
+      _id: '',
+      text: ''
+    }
+
+    this.currentCategory = emptyCategory;
   }
 
 }
