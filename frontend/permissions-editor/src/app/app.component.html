@@ -1,1 +1,34 @@
-<mat-card>Hello</mat-card>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <span>
+        {{ title }}
+    </span>
+    <span class="spacer"></span>
+    <button mat-mini-fab [matMenuTriggerFor]="menu">
+        <mat-icon aria-hidden="true" >person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <p mat-menu-item disabled>Not Logged in</p>
+        <button mat-menu-item>Log In</button>
+        <button mat-menu-item>Sign Up</button>
+    </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="mat-elevation-z5">
+        <mat-nav-list>
+            <a mat-list-item>Categories</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item>Permissions</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-container>
+        <div class="content">
+            <mat-grid-list cols="2" rowHeight="42.5vh" gutterSize="40px">
+                <mat-grid-tile class="mat-elevation-z5">1</mat-grid-tile>
+                <mat-grid-tile class="mat-elevation-z5">2</mat-grid-tile>
+                <mat-grid-tile class="mat-elevation-z5" colspan="2">3</mat-grid-tile>
+              </mat-grid-list>
+        </div>
+    </mat-sidenav-container>   
+</mat-sidenav-container>
