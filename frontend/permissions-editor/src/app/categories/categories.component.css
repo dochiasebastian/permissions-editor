@@ -1,0 +1,10 @@
+.fill {
+    height: calc(100% - 80px);
+    width: calc(100% - 80px);
+    top: 0;
+}
+
+.content {
+    margin: 40px;
+    bottom: 0;
+}

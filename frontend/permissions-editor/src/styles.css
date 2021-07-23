@@ -13,40 +13,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.mat-toolbar {
-    z-index: 900;
-    position: relative;
-}
-
-
-
 .spacer {
     flex-grow: 1;
 }
 
-.mat-sidenav {
-    width: 200px;
-    padding-top: 10px;
-}
-
-.mat-sidenav .mat-list-item-content {
-    justify-content: center;
-}
-
-.mat-sidenav-container {
-    height: calc(100vh - 64px); 
-    background: #f5f5f5e0;
-    flex: 1;
-    z-index: -1;
-}
-
 .account-btn {
     right: 0;
-}
-
-.content {
-    margin: 40px;
-    bottom: 0;
 }
 
 mat-grid-tile mat-card {
@@ -92,6 +64,31 @@ mat-list-item:hover {
     display:none;
 }
 
+mat-toolbar >.mat-mini-fab {
+    margin-right: 10px;
+}
+
+.mat-toolbar {
+    z-index: 900;
+    position: relative;
+}
+
+.mat-sidenav {
+    width: 200px;
+    padding-top: 10px;
+}
+
+.mat-sidenav .mat-list-item-content {
+    justify-content: center;
+}
+
+.mat-sidenav-container {
+    height: calc(100vh - 64px); 
+    background: #f5f5f5e0;
+    flex: 1;
+    z-index: -1;
+}
+
 .mat-card-header .mat-card-title {
     margin-top: 12px;
 }
@@ -110,4 +107,9 @@ mat-list-item:hover {
 
 .mat-card-header .mat-mini-fab .mat-button-wrapper {
     padding: 0 !important;
+}
+
+.mat-grid-tile .mat-figure {
+    align-items: unset !important;
+    justify-content: unset !important;
 }
