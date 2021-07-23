@@ -57,6 +57,9 @@ export class CategoriesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
 
+  selectCategory(category: {_id: string, text: string}) {
+    this.currentCategory = category;
   }
 }

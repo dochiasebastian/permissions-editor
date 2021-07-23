@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 
 @Component({
@@ -8,10 +8,7 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 })
 export class SelectableListComponent implements OnInit {
   @Input() categories: { _id: string; text: string; }[] = [];
-  currentCategory: { _id: string; text: string; } = {
-    _id: '',
-    text: ''
-  };
+  @Output() currentCategoryEvent = new EventEmitter<{ _id: string; text: string; }>();
 
   @ViewChild('categoriesList') categoriesList: MatSelectionList | undefined;
   allSelected = false;
@@ -23,7 +20,7 @@ export class SelectableListComponent implements OnInit {
   }
 
   selectCategory(category: {_id: string, text: string}) {
-    this.currentCategory = category;
+    this.currentCategoryEvent.emit(category);
   }
 
   resetCategory() {
@@ -32,7 +29,7 @@ export class SelectableListComponent implements OnInit {
       text: ''
     }
 
-    this.currentCategory = emptyCategory;
+    this.currentCategoryEvent.emit(emptyCategory);
   }
 
   selectAll() {
