@@ -34,7 +34,7 @@ export class SelectableListComponent implements OnInit {
   }
 
   selectAll() {
-    this.allSelected = !this.allSelected;  // to control select-unselect
+    this.allSelected = !this.allSelected;
       
       if (this.allSelected) {
         this.categoriesList!.options.forEach( (item : MatListOption) => item.selected = true);

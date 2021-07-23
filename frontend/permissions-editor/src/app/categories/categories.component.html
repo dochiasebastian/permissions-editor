@@ -5,7 +5,7 @@
             </app-selectable-list>
         </mat-grid-tile>
         <mat-grid-tile class="mat-elevation-z4">
-            <app-categories-form class="fill"></app-categories-form>
+            <app-categories-form class="fill" [currentCategory]="currentCategory" (updatedCategoryEvent)="updateCategory($event)"></app-categories-form>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" class="mat-elevation-z4">
             <mat-card class="fill">

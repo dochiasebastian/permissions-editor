@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Category } from '../model/category';
 
 @Component({
@@ -26,33 +26,13 @@ export class CategoriesComponent implements OnInit {
       text: 'Permissive'
     },
     {
-      _id: '2gegrg',
+      _id: '2geg0-rg',
       text: 'Funny'
     },
     {
-      _id: '2gegrg',
+      _id: '2g7egrg',
       text: 'Useless'
-    },
-    {
-      _id: '1e1dw3d',
-      text: 'All'
-    },
-    {
-      _id: 'gdfsgsdg',
-      text: 'Necessary'
-    },
-    {
-      _id: '32t2gvedg',
-      text: 'Permissive'
-    },
-    {
-      _id: '2gegrg',
-      text: 'Funny'
-    },
-    {
-      _id: '2gegrg',
-      text: 'Useless'
-    },
+    }
   ];
 
   constructor() { }
@@ -62,5 +42,12 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(category: Category) {
     this.currentCategory = category;
+  }
+
+  updateCategory(updatedCategory: Category) {
+    console.log(updatedCategory);
+    const toUpdateIndex = this.categories.findIndex((category: Category) => category._id == updatedCategory._id);
+    
+    this.categories[toUpdateIndex].text = updatedCategory.text;
   }
 }

@@ -89,6 +89,10 @@ mat-toolbar >.mat-mini-fab {
     z-index: -1;
 }
 
+.mat-card-header {
+    margin-bottom: 20px;
+}
+
 .mat-card-header .mat-card-title {
     margin-top: 12px;
 }

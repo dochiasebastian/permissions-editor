@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Category } from 'src/app/model/category';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
@@ -8,9 +8,9 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css']
 })
-export class CategoriesFormComponent implements OnInit {
-  model= new Category("asf23fed", "Category Name");
-  submited = false;
+export class CategoriesFormComponent implements OnChanges {
+  @Input() currentCategory: Category | undefined;
+  @Output() updatedCategoryEvent = new EventEmitter<Category>();
 
   categoryFormControl = new FormControl('', [
     Validators.required,
@@ -21,11 +21,12 @@ export class CategoriesFormComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges() {
+    this.categoryFormControl.setValue(this.currentCategory!.text);
   }
 
   onSubmit() {
-    this.submited = true;
+    this.updatedCategoryEvent.emit({_id: `${this.currentCategory?._id}`, text: `${this.categoryFormControl.value}`});
   }
 
 }
