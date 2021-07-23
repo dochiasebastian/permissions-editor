@@ -1,15 +1,11 @@
 <div class="content">
     <mat-grid-list cols="2" rowHeight="42.5vh" gutterSize="40px">
         <mat-grid-tile class="mat-elevation-z4">
-            <app-selectable-list [categories]="categories" (currentCategoryEvent)="selectCategory($event)" class="fill"></app-selectable-list>
+            <app-selectable-list [categories]="categories" (currentCategoryEvent)="selectCategory($event)" class="fill">
+            </app-selectable-list>
         </mat-grid-tile>
         <mat-grid-tile class="mat-elevation-z4">
-            <mat-card class="fill">
-                <mat-card-header>
-                    <mat-card-title>Edit</mat-card-title>
-                </mat-card-header>
-
-            </mat-card>
+            <app-categories-form class="fill"></app-categories-form>
         </mat-grid-tile>
         <mat-grid-tile colspan="2" class="mat-elevation-z4">
             <mat-card class="fill">

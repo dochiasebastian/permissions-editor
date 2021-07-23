@@ -8,12 +8,14 @@ import { MaterialModule } from './material.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule } from '@angular/forms';
 import { SelectableListComponent } from './selectable-list/selectable-list.component';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
-    SelectableListComponent
+    SelectableListComponent,
+    CategoriesFormComponent
   ],
   imports: [
     BrowserModule,

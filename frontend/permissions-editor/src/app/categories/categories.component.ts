@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-categories',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  currentCategory: { _id: string; text: string; } = {
+  currentCategory: Category = {
     _id: '',
     text: ''
   };
@@ -59,7 +60,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectCategory(category: {_id: string, text: string}) {
+  selectCategory(category: Category) {
     this.currentCategory = category;
   }
 }

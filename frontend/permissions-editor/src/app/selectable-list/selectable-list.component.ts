@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-selectable-list',
@@ -7,8 +8,8 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
   styleUrls: ['./selectable-list.component.css']
 })
 export class SelectableListComponent implements OnInit {
-  @Input() categories: { _id: string; text: string; }[] = [];
-  @Output() currentCategoryEvent = new EventEmitter<{ _id: string; text: string; }>();
+  @Input() categories: Category[] = [];
+  @Output() currentCategoryEvent = new EventEmitter<Category>();
 
   @ViewChild('categoriesList') categoriesList: MatSelectionList | undefined;
   allSelected = false;
