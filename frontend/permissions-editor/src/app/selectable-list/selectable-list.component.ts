@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Category } from '../model/category';
 
@@ -10,6 +10,7 @@ import { Category } from '../model/category';
 export class SelectableListComponent implements OnInit {
   @Input() categories: Category[] = [];
   @Output() currentCategoryEvent = new EventEmitter<Category>();
+  @Output() selectedCountEvent = new EventEmitter<Number>();
 
   @ViewChild('categoriesList') categoriesList: MatSelectionList | undefined;
   allSelected = false;
@@ -22,6 +23,7 @@ export class SelectableListComponent implements OnInit {
 
   selectCategory(category: {_id: string, text: string}) {
     this.currentCategoryEvent.emit(category);
+    this.selectedCountEvent.emit(this.categoriesList!.selectedOptions.selected.length);
   }
 
   resetCategory() {

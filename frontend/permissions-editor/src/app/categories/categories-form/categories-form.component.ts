@@ -10,6 +10,7 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 })
 export class CategoriesFormComponent implements OnChanges {
   @Input() currentCategory: Category | undefined;
+  @Input() inEditMode = false;
   @Output() updatedCategoryEvent = new EventEmitter<Category>();
 
   categoryFormControl = new FormControl('', [

@@ -11,6 +11,9 @@ export class CategoriesComponent implements OnInit {
     _id: '',
     text: ''
   };
+  selectedCount = 0;
+
+  inEditMode = false;
 
   categories = [
     {
@@ -47,7 +50,17 @@ export class CategoriesComponent implements OnInit {
   updateCategory(updatedCategory: Category) {
     console.log(updatedCategory);
     const toUpdateIndex = this.categories.findIndex((category: Category) => category._id == updatedCategory._id);
-    
+
     this.categories[toUpdateIndex].text = updatedCategory.text;
+  }
+
+  setCount(count: number) {
+    this.selectedCount = count;
+    
+    if(!this.selectedCount) {
+      this.inEditMode = false;
+    } else {
+      this.inEditMode = true;
+    }
   }
 }
