@@ -17,6 +17,7 @@
             <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=list.length>
                 <mat-list-option *cdkVirtualFor="let item of list" (click)="selectItem(item)" [value]="item">
                     <h3 matLine>{{item.text}}</h3>
+                    <p matLine *ngIf="item.type">{{item.type}}</p>
                 </mat-list-option>
             </cdk-virtual-scroll-viewport>
         </mat-selection-list>

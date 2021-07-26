@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectableListComponent } from './selectable-list/selectable-list.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { PermissionsComponent } from './permissions/permissions.component';
+import { PermissionsFormComponent } from './permissions/permissions-form/permissions-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PermissionsComponent } from './permissions/permissions.component';
     CategoriesComponent,
     SelectableListComponent,
     CategoriesFormComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    PermissionsFormComponent
   ],
   imports: [
     BrowserModule,

@@ -63,7 +63,7 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  delete(categoriesToDelete: Category[]) {
+  deleteItem(categoriesToDelete: Category[]) {
     this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
   }
 
@@ -73,4 +73,5 @@ export class CategoriesComponent implements OnInit {
     this.categories.push(category);
     this.categories = this.categories.concat(tmp);
   }
+  
 }

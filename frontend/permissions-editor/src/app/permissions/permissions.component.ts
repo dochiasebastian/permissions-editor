@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../model/category';
+import { Permission } from '../model/permission';
 
 @Component({
   selector: 'app-permissions',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./permissions.component.css']
 })
 export class PermissionsComponent implements OnInit {
+  currentPermission: Permission = {
+    _id: '',
+    type: '',
+    text: ''
+  };
 
-  permisisons = [
+  selectedCount = 0;
+
+  inEditMode = false;
+
+  permissions = [
     {
       _id: 'f32f3e2',
       type: "Necessary",
@@ -46,4 +57,37 @@ export class PermissionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectPermission(permission: Permission | Category) {
+    if(permission instanceof Permission) {
+      this.currentPermission = permission;
+    }
+  }
+
+  updatePermission(updatedPermission: Permission) {
+    const toUpdateIndex = this.permissions.findIndex((permission: Permission) => permission._id == updatedPermission._id);
+
+    this.permissions[toUpdateIndex].text = updatedPermission.text;
+  }
+
+  setCount(count: number) {
+    this.selectedCount = count;
+    
+    if(!this.selectedCount) {
+      this.inEditMode = false;
+    } else {
+      this.inEditMode = true;
+    }
+  }
+
+  deleteItem(permissionsToDelete: Permission[] | Category[]) {
+    this.permissions = this.permissions.filter(permission => !permissionsToDelete.includes(permission));
+  }
+
+  add(permission: Permission) {
+    let tmp = this.permissions;
+    this.permissions = [];
+    this.permissions.push(permission);
+    this.permissions = this.permissions.concat(tmp);
+  }
+  
 }

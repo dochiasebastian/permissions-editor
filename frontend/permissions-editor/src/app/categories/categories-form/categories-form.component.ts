@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Category } from 'src/app/model/category';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
