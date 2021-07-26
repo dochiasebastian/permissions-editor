@@ -12,6 +12,7 @@ export class CategoriesFormComponent implements OnChanges {
   @Input() currentCategory: Category | undefined;
   @Input() inEditMode = false;
   @Output() updatedCategoryEvent = new EventEmitter<Category>();
+  @Output() addCategoryEvent = new EventEmitter<Category>();
 
   categoryFormControl = new FormControl('', [
     Validators.required,
@@ -31,7 +32,13 @@ export class CategoriesFormComponent implements OnChanges {
   }
 
   onSubmit() {
-    this.updatedCategoryEvent.emit({_id: `${this.currentCategory?._id}`, text: `${this.categoryFormControl.value}`});
+    const newCategory: Category = {_id: `${this.currentCategory?._id}`, text: `${this.categoryFormControl.value}`}
+
+    if(this.inEditMode) {
+      this.updatedCategoryEvent.emit(newCategory);
+    } else {
+      this.addCategoryEvent.emit(newCategory);
+    }
   }
 
 }

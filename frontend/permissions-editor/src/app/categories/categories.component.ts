@@ -48,7 +48,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   updateCategory(updatedCategory: Category) {
-    console.log(updatedCategory);
     const toUpdateIndex = this.categories.findIndex((category: Category) => category._id == updatedCategory._id);
 
     this.categories[toUpdateIndex].text = updatedCategory.text;
@@ -66,5 +65,12 @@ export class CategoriesComponent implements OnInit {
 
   delete(categoriesToDelete: Category[]) {
     this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
+  }
+
+  add(category: Category) {
+    let tmp = this.categories;
+    this.categories = [];
+    this.categories.push(category);
+    this.categories = this.categories.concat(tmp);
   }
 }
