@@ -9,13 +9,15 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectableListComponent } from './selectable-list/selectable-list.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { PermissionsComponent } from './permissions/permissions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
     SelectableListComponent,
-    CategoriesFormComponent
+    CategoriesFormComponent,
+    PermissionsComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { Category } from '../model/category';
 })
 export class SelectableListComponent implements OnInit {
   @Input() categories: Category[] = [];
+  @Input() title: string = 'Title';
   @Output() currentCategoryEvent = new EventEmitter<Category>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
   @Output() toDeleteCategoriesEvent = new EventEmitter<Category[]>();
