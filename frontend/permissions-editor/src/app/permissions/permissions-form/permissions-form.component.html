@@ -7,13 +7,13 @@
             <mat-form-field appearance="fill" class="input-text-form">
                 <mat-label>Name</mat-label>
                 <input type="text" matInput formControlName="text" [errorStateMatcher]="matcher" placeholder="Ex. Send you emails"/>
-                <mat-error *ngIf= "permissionsForm.get('text')!.hasError('maxlength') && !permissionsForm.get('text')!.hasError('required')">Category name cannot be longer than <strong>20 characters</strong></mat-error>
+                <mat-error *ngIf= "permissionsForm.get('text')!.hasError('maxlength') && !permissionsForm.get('text')!.hasError('required')">Category name cannot be longer than <strong>70 characters</strong></mat-error>
                 <mat-error *ngIf= "permissionsForm.get('text')!.hasError('required')">Permission text is <strong>required</strong></mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill" class="input-text-form">
                 <mat-label>Type</mat-label>
                 <input type="text" matInput formControlName="type" [errorStateMatcher]="matcher" placeholder="Ex. Necessary"/>
-                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('maxlength') && !permissionsForm.get('type')!.hasError('required')">Category name cannot be longer than <strong>20 characters</strong></mat-error>
+                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('maxlength') && !permissionsForm.get('type')!.hasError('required')">Category type cannot be longer than <strong>10 characters</strong></mat-error>
                 <mat-error *ngIf= "permissionsForm.get('type')!.hasError('required')">Category type is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="spacer"></div>

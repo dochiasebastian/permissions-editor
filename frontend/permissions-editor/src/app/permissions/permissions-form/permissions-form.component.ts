@@ -17,7 +17,7 @@ export class PermissionsFormComponent implements OnChanges {
   permissionsForm = new FormGroup({
     text: new FormControl('', [
       Validators.required,
-      Validators.maxLength(20)
+      Validators.maxLength(70)
     ]),
     type: new FormControl('',[
       Validators.required,
@@ -40,7 +40,7 @@ export class PermissionsFormComponent implements OnChanges {
   }
 
   onSubmit() {
-    const newPermission: Permission = {_id: `${this.currentPermission?._id}`,type:`${this.permissionsForm.get('type')!.value}`, text: `${this.permissionsForm.get('text')!.value}`}
+    const newPermission: Permission = {_id: `${this.currentPermission!._id}`, type:`${this.permissionsForm.get('type')!.value}`, text: `${this.permissionsForm.get('text')!.value}`}
 
     if(this.inEditMode) {
       this.updatedPermissionEvent.emit(newPermission);

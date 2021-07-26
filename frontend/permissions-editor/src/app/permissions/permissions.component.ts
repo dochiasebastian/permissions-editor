@@ -49,7 +49,7 @@ export class PermissionsComponent implements OnInit {
       type: "Permissive",
       text: "Read Berserk by Kentaro Miura on your behalf"
     },
-    
+
   ]
 
   constructor() { }
@@ -57,13 +57,11 @@ export class PermissionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectPermission(permission: Permission | Category) {
-    if(permission instanceof Permission) {
-      this.currentPermission = permission;
-    }
+  selectPermission(permission: any) {
+    this.currentPermission = permission;
   }
 
-  updatePermission(updatedPermission: Permission) {
+  updatePermission(updatedPermission: any) {
     const toUpdateIndex = this.permissions.findIndex((permission: Permission) => permission._id == updatedPermission._id);
 
     this.permissions[toUpdateIndex].text = updatedPermission.text;
@@ -71,8 +69,8 @@ export class PermissionsComponent implements OnInit {
 
   setCount(count: number) {
     this.selectedCount = count;
-    
-    if(!this.selectedCount) {
+
+    if (!this.selectedCount) {
       this.inEditMode = false;
     } else {
       this.inEditMode = true;
@@ -89,5 +87,5 @@ export class PermissionsComponent implements OnInit {
     this.permissions.push(permission);
     this.permissions = this.permissions.concat(tmp);
   }
-  
+
 }
