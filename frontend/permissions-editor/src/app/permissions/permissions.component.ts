@@ -49,7 +49,7 @@ export class PermissionsComponent implements OnInit {
       type: "Permissive",
       text: "Read Berserk by Kentaro Miura on your behalf"
     },
-  ]
+  ];
 
   constructor() { }
 

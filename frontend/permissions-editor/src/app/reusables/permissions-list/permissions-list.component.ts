@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Permission } from 'src/app/model/permission';
 
 @Component({
   selector: 'app-permissions-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./permissions-list.component.css']
 })
 export class PermissionsListComponent implements OnInit {
+  @Input() permissions: Permission[] | undefined;
 
   constructor() { }
 

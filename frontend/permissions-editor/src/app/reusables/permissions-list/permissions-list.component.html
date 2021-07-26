@@ -1,1 +1,9 @@
-<p>permissions-list works!</p>
+<div class="scroll-list-container">
+    <mat-list class="scroll-list" #permissionsList>
+        <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=permissions!.length>
+            <mat-list-item *cdkVirtualFor="let permission of permissions">
+                <h3>{{permission.text}}</h3>
+            </mat-list-item>
+        </cdk-virtual-scroll-viewport>
+    </mat-list>
+</div>
