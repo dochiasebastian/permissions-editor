@@ -13,10 +13,10 @@
         </button>
     </mat-card-header>
     <mat-card-content class="scroll-list-container">
-        <mat-selection-list #categoriesList [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)" class="scroll-list">
-            <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=categories.length>
-                <mat-list-option *cdkVirtualFor="let category of categories" (click)="selectCategory(category)" [value]="category">
-                    <h3 matLine>{{category.text}}</h3>
+        <mat-selection-list #itemsList [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)" class="scroll-list">
+            <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=list.length>
+                <mat-list-option *cdkVirtualFor="let item of list" (click)="selectItem(item)" [value]="item">
+                    <h3 matLine>{{item.text}}</h3>
                 </mat-list-option>
             </cdk-virtual-scroll-viewport>
         </mat-selection-list>

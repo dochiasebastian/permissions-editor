@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Category } from '../model/category';
+import { Permission } from '../model/permission';
 
 @Component({
   selector: 'app-selectable-list',
@@ -8,35 +9,35 @@ import { Category } from '../model/category';
   styleUrls: ['./selectable-list.component.css']
 })
 export class SelectableListComponent implements OnInit {
-  @Input() categories: Category[] = [];
+  @Input() list: Category[] | Permission[] = [];
   @Input() title: string = 'Title';
-  @Output() currentCategoryEvent = new EventEmitter<Category>();
+  @Output() currentItemEvent = new EventEmitter<Category | Permission>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
-  @Output() toDeleteCategoriesEvent = new EventEmitter<Category[]>();
+  @Output() toDeleteItemsEvent = new EventEmitter<Category[] | Permission[]>();
 
-  selectedOptions: Category[] = [];
+  selectedOptions: Category[] | Permission[] = [];
 
-  @ViewChild('categoriesList') categoriesList: MatSelectionList | undefined;
+  @ViewChild('itemsList') itemsList: MatSelectionList | undefined;
   allSelected = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.resetCategory();
+    this.resetItem();
   }
 
-  selectCategory(category: { _id: string, text: string }) {
-    this.currentCategoryEvent.emit(category);
-    this.selectedCountEvent.emit(this.categoriesList!.selectedOptions.selected.length);
+  selectItem(category: Category) {
+    this.currentItemEvent.emit(category);
+    this.selectedCountEvent.emit(this.itemsList!.selectedOptions.selected.length);
   }
 
-  resetCategory() {
+  resetItem() {
     const emptyCategory = {
       _id: '',
       text: ''
     }
 
-    this.currentCategoryEvent.emit(emptyCategory);
+    this.currentItemEvent.emit(emptyCategory);
   }
 
   create() {
@@ -55,7 +56,7 @@ export class SelectableListComponent implements OnInit {
       return;
     }
 
-    if (this.allSelected && this.selectedOptions.length !== this.categories.length) {
+    if (this.allSelected && this.selectedOptions.length !== this.list.length) {
       this.toggleSelectedState(true);
     } else {
       this.deselectAll();
@@ -63,17 +64,17 @@ export class SelectableListComponent implements OnInit {
   }
 
   toggleSelectedState(state: boolean) {
-    this.categoriesList!.options.forEach((item: MatListOption) => item.selected = state);
+    this.itemsList!.options.forEach((item: MatListOption) => item.selected = state);
   }
 
   deselectAll() {
     this.toggleSelectedState(false);
-    this.resetCategory();
-    this.selectedCountEvent.emit(this.categoriesList!.selectedOptions.selected.length);
+    this.resetItem();
+    this.selectedCountEvent.emit(this.itemsList!.selectedOptions.selected.length);
   }
 
   deleteSelected() {
-    this.toDeleteCategoriesEvent.emit(this.selectedOptions);
+    this.toDeleteItemsEvent.emit(this.selectedOptions);
     this.deselectAll();
   }
 }
