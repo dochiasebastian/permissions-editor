@@ -12,6 +12,8 @@ import { CategoriesFormComponent } from './categories/categories-form/categories
 import { PermissionsComponent } from './permissions/permissions.component';
 import { PermissionsFormComponent } from './permissions/permissions-form/permissions-form.component';
 import { PreviewComponent } from './preview/preview.component';
+import { CategoriesListComponent } from './reusables/categories-list/categories-list.component';
+import { PermissionsListComponent } from './reusables/permissions-list/permissions-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PreviewComponent } from './preview/preview.component';
     CategoriesFormComponent,
     PermissionsComponent,
     PermissionsFormComponent,
-    PreviewComponent
+    PreviewComponent,
+    CategoriesListComponent,
+    PermissionsListComponent
   ],
   imports: [
     BrowserModule,

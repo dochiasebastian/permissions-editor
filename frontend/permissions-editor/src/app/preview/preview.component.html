@@ -1,1 +1,25 @@
-<p>preview works!</p>
+<div>
+    <mat-card>
+        <div class="bar"></div>
+        <mat-card-title>
+            <mat-card-header>
+                <h1>Select your preferences</h1>
+            </mat-card-header>
+        </mat-card-title>
+        <mat-card-content>
+            <div>
+                <h2>Presets:</h2>
+                <app-categories-list></app-categories-list>
+            </div>
+            <div>
+                <h2>Permissions:</h2>
+                <form>
+                    <div>
+                        <app-permissions-list></app-permissions-list>
+                    </div>
+                    <button type="submit" mat-raised-button color="accent">Submit</button>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
