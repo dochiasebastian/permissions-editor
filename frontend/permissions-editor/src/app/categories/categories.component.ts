@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Category } from '../model/category';
+import { Permission } from '../model/permission';
 
 @Component({
   selector: 'app-categories',
@@ -38,7 +39,9 @@ export class CategoriesComponent implements OnInit {
     }
   ];
 
-  permissions = [
+  selectedPermissions: Permission[] = [];
+
+  permissions: Permission[] = [
     {
       _id: 'f32f3e2',
       type: "Necessary",
@@ -78,6 +81,11 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(category: Category) {
     this.currentCategory = category;
+    if(category.text === "All") {
+      this.selectedPermissions = this.permissions;
+    } else {
+      this.selectedPermissions = this.permissions.filter(permission => permission.type == category.text); 
+    }
   }
 
   updateCategory(updatedCategory: Category) {
