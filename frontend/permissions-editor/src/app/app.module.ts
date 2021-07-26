@@ -23,7 +23,7 @@ import { CategoriesFormComponent } from './categories/categories-form/categories
     AppRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

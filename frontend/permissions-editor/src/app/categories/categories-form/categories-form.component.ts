@@ -23,7 +23,11 @@ export class CategoriesFormComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    this.categoryFormControl.setValue(this.currentCategory!.text);
+    if(this.inEditMode) {
+      this.categoryFormControl.setValue(this.currentCategory!.text);
+    } else {
+      this.categoryFormControl.setValue('');
+    }
   }
 
   onSubmit() {

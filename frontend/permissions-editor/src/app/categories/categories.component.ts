@@ -63,4 +63,8 @@ export class CategoriesComponent implements OnInit {
       this.inEditMode = true;
     }
   }
+
+  delete(categoriesToDelete: Category[]) {
+    this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
+  }
 }

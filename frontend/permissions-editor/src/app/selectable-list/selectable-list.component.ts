@@ -11,6 +11,9 @@ export class SelectableListComponent implements OnInit {
   @Input() categories: Category[] = [];
   @Output() currentCategoryEvent = new EventEmitter<Category>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
+  @Output() toDeleteCategoriesEvent = new  EventEmitter<Category[]>();
+
+  selectedOptions: Category[] = [];
 
   @ViewChild('categoriesList') categoriesList: MatSelectionList | undefined;
   allSelected = false;
@@ -35,13 +38,31 @@ export class SelectableListComponent implements OnInit {
     this.currentCategoryEvent.emit(emptyCategory);
   }
 
+  create() {
+    this.deselectAll();
+  }
+
+  onNgModelChange(categories: Category[]){
+    this.selectedOptions=categories;
+  }
+
   selectAll() {
     this.allSelected = !this.allSelected;
       
       if (this.allSelected) {
         this.categoriesList!.options.forEach( (item : MatListOption) => item.selected = true);
       } else {
-        this.categoriesList!.options.forEach( (item : MatListOption) => {item.selected = false});
+        this.deselectAll();
       }
+  }
+
+  deselectAll() {
+    this.categoriesList!.options.forEach( (item : MatListOption) => {item.selected = false});
+    this.resetCategory();
+    this.selectedCountEvent.emit(this.categoriesList!.selectedOptions.selected.length);
+  }
+
+  deleteSelected() {
+    this.toDeleteCategoriesEvent.emit(this.selectedOptions);
   }
 }

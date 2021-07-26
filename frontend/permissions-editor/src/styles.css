@@ -64,7 +64,7 @@ mat-list-item:hover {
     display:none;
 }
 
-mat-toolbar >.mat-mini-fab {
+.mat-toolbar >.mat-mini-fab {
     margin-right: 10px;
 }
 
