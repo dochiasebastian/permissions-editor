@@ -11,6 +11,7 @@ import { SelectableListComponent } from './selectable-list/selectable-list.compo
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { PermissionsFormComponent } from './permissions/permissions-form/permissions-form.component';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PermissionsFormComponent } from './permissions/permissions-form/permiss
     SelectableListComponent,
     CategoriesFormComponent,
     PermissionsComponent,
-    PermissionsFormComponent
+    PermissionsFormComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,

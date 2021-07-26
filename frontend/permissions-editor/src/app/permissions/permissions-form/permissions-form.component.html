@@ -14,7 +14,7 @@
                 <mat-label>Type</mat-label>
                 <input type="text" matInput formControlName="type" [errorStateMatcher]="matcher" placeholder="Ex. Necessary"/>
                 <mat-error *ngIf= "permissionsForm.get('type')!.hasError('maxlength') && !permissionsForm.get('type')!.hasError('required')">Category type cannot be longer than <strong>10 characters</strong></mat-error>
-                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('required')">Category type is <strong>required</strong></mat-error>
+                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('required')">Category is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="spacer"></div>
             <div class="submit-group">
