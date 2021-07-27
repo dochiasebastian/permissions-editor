@@ -75,7 +75,9 @@ export class PermissionsComponent implements OnInit {
   deleteItem(permissionsToDelete: IPermission[]) {
     this.permissions = this.permissions.filter(permission => !permissionsToDelete.includes(permission));
 
-    this.permissionsService.deletePermission(permissionsToDelete[0]).subscribe();
+    permissionsToDelete.forEach(permission => {
+      this.permissionsService.deletePermission(permission).subscribe(); 
+    });
   }
 
   add(permission: IPermission) {
