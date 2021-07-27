@@ -14,6 +14,7 @@ import { PermissionsFormComponent } from './permissions/permissions-form/permiss
 import { PreviewComponent } from './preview/preview.component';
 import { CategoriesListComponent } from './reusables/categories-list/categories-list.component';
 import { PermissionsListComponent } from './reusables/permissions-list/permissions-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PermissionsListComponent } from './reusables/permissions-list/permissio
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICategory } from 'src/app/model/category';
 import { IPermission } from 'src/app/model/permission';
@@ -7,7 +7,8 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 @Component({
   selector: 'app-permissions-form',
   templateUrl: './permissions-form.component.html',
-  styleUrls: ['./permissions-form.component.css']
+  styleUrls: ['./permissions-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PermissionsFormComponent implements OnChanges {
   @Input() currentPermission!: IPermission;
@@ -26,7 +27,7 @@ export class PermissionsFormComponent implements OnChanges {
     ])
   });
 
-  selected = 'Necessary';
+  selected = '';
   matcher = new CustomErrorStateMatcher();
 
   constructor() { }
@@ -37,7 +38,7 @@ export class PermissionsFormComponent implements OnChanges {
       this.selected = this.currentPermission.type;
     } else {
       this.permissionsForm.get('text')!.setValue('');
-      this.selected = 'Necessary'
+      this.selected = '';
     }
   }
 
