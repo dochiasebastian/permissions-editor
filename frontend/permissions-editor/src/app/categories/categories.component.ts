@@ -19,7 +19,6 @@ export class CategoriesComponent implements OnInit {
   inEditMode = false;
 
   categories: ICategory[] = [];
-
   permissions: IPermission[] = [];
 
   selectedPermissions: IPermission[] = [];
@@ -36,11 +35,13 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(category: ICategory) {
     this.currentCategory = category;
+
     if(category.text === "All") {
       this.selectedPermissions = this.permissions;
-    } else {
-      this.selectedPermissions = this.permissions.filter(permission => permission.type == category.text); 
+      return;
     }
+
+    this.selectedPermissions = this.permissions.filter(permission => permission.type == category.text);
   }
 
   updateCategory(updatedCategory: ICategory) {

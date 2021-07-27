@@ -32,7 +32,7 @@ export const getCategory = asyncHandler(async (req: any, res: any) => {
 });
 
 export const updateCategory = asyncHandler(async (req: any, res: any, next: any) => {
-    const category = await Category.findByIdAndUpdate(req.body.id, req.body, {
+    const category = await Category.findByIdAndUpdate(req.body._id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false

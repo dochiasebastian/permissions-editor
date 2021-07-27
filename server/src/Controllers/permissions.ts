@@ -34,7 +34,7 @@ export const getPermissions = asyncHandler(async (req: any, res: any) => {
 });
 
 export const updatePermission = asyncHandler(async (req: any, res: any, next: any) => {
-    const permission = await Permission.findByIdAndUpdate(req.body.id, req.body, {
+    const permission = await Permission.findByIdAndUpdate(req.body._id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false
