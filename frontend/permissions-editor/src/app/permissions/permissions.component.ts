@@ -58,6 +58,8 @@ export class PermissionsComponent implements OnInit {
     const toUpdateIndex = this.permissions.findIndex((permission: IPermission) => permission._id == updatedPermission._id);
 
     this.permissions[toUpdateIndex].text = updatedPermission.text;
+
+    this.permissionsService.updatePermission(updatedPermission).subscribe();
   }
 
   setCount(count: number) {
@@ -70,8 +72,10 @@ export class PermissionsComponent implements OnInit {
     }
   }
 
-  deleteItem(permissionsToDelete: IPermission[] | ICategory[]) {
+  deleteItem(permissionsToDelete: IPermission[]) {
     this.permissions = this.permissions.filter(permission => !permissionsToDelete.includes(permission));
+
+    this.permissionsService.deletePermission(permissionsToDelete[0]).subscribe();
   }
 
   add(permission: IPermission) {
@@ -79,6 +83,8 @@ export class PermissionsComponent implements OnInit {
     this.permissions = [];
     this.permissions.push(permission);
     this.permissions = this.permissions.concat(tmp);
+
+    this.permissionsService.createPermission(permission).subscribe();
   }
 
 }

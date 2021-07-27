@@ -13,7 +13,7 @@ export class SelectableListComponent implements OnInit {
   @Input() title: string = 'Title';
   @Output() currentItemEvent = new EventEmitter<ICategory | IPermission>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
-  @Output() toDeleteItemsEvent = new EventEmitter<ICategory[] | IPermission[]>();
+  @Output() toDeleteItemsEvent = new EventEmitter<any []>();
 
   selectedOptions: ICategory[] | IPermission[] = [];
 
