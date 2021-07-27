@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ICategory } from 'src/app/model/category';
 import { IPermission } from 'src/app/model/permission';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 
@@ -10,6 +11,7 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 })
 export class PermissionsFormComponent implements OnChanges {
   @Input() currentPermission!: IPermission;
+  @Input() categories!: ICategory[];
   @Input() inEditMode = false;
   @Output() updatedPermissionEvent = new EventEmitter<IPermission>();
   @Output() addPermissionEvent = new EventEmitter<IPermission>();
@@ -20,11 +22,11 @@ export class PermissionsFormComponent implements OnChanges {
       Validators.maxLength(70)
     ]),
     type: new FormControl('',[
-      Validators.required,
-      Validators.maxLength(10)
+      Validators.required
     ])
   });
 
+  selected = 'Necessary';
   matcher = new CustomErrorStateMatcher();
 
   constructor() { }
@@ -32,15 +34,15 @@ export class PermissionsFormComponent implements OnChanges {
   ngOnChanges(): void {
     if(this.inEditMode) {
       this.permissionsForm.get('text')!.setValue(this.currentPermission.text);
-      this.permissionsForm.get('type')!.setValue(this.currentPermission.type);
+      this.selected = this.currentPermission.type;
     } else {
       this.permissionsForm.get('text')!.setValue('');
-      this.permissionsForm.get('type')!.setValue('');
+      this.selected = 'Necessary'
     }
   }
 
   onSubmit() {
-    const newPermission: IPermission = {_id: `${this.currentPermission._id}`, type:`${this.permissionsForm.get('type')!.value}`, text: `${this.permissionsForm.get('text')!.value}`}
+    const newPermission: IPermission = {_id: `${this.currentPermission._id}`, type:`${this.selected}`, text: `${this.permissionsForm.get('text')!.value}`}
 
     if(this.inEditMode) {
       this.updatedPermissionEvent.emit(newPermission);

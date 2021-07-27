@@ -12,8 +12,9 @@
             </mat-form-field>
             <mat-form-field appearance="fill" class="input-text-form">
                 <mat-label>Type</mat-label>
-                <input type="text" matInput formControlName="type" [errorStateMatcher]="matcher" placeholder="Ex. Necessary"/>
-                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('maxlength') && !permissionsForm.get('type')!.hasError('required')">Category type cannot be longer than <strong>10 characters</strong></mat-error>
+                <mat-select formControlName="type" [errorStateMatcher]="matcher" [(value)]="selected" >
+                    <mat-option *ngFor="let category of categories" [value]="category.text">{{category.text}}</mat-option>
+                </mat-select>
                 <mat-error *ngIf= "permissionsForm.get('type')!.hasError('required')">Category is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="spacer"></div>

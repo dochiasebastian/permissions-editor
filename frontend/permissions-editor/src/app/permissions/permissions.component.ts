@@ -51,6 +51,29 @@ export class PermissionsComponent implements OnInit {
     },
   ];
 
+  categories = [
+    {
+      _id: '1e1dw3d',
+      text: 'All'
+    },
+    {
+      _id: 'gdfsgsdg',
+      text: 'Necessary'
+    },
+    {
+      _id: '32t2gvedg',
+      text: 'Permissive'
+    },
+    {
+      _id: '2geg0-rg',
+      text: 'Funny'
+    },
+    {
+      _id: '2g7egrg',
+      text: 'Useless'
+    }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

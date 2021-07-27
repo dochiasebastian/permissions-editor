@@ -7,7 +7,7 @@ import { IPermission } from 'src/app/model/permission';
   styleUrls: ['./permissions-list.component.css']
 })
 export class PermissionsListComponent implements OnInit {
-  @Input() permissions: IPermission[] | undefined;
+  @Input() permissions!: IPermission[];
 
   constructor() { }
 
