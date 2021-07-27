@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
+import { CategoryService } from '../util/categories.service';
 import { PermissionsService } from '../util/permissions.service';
 
 @Component({
@@ -21,33 +22,16 @@ export class PermissionsComponent implements OnInit {
 
   permissions: IPermission[] = [];
 
-  categories = [
-    {
-      _id: '1e1dw3d',
-      text: 'All'
-    },
-    {
-      _id: 'gdfsgsdg',
-      text: 'Necessary'
-    },
-    {
-      _id: '32t2gvedg',
-      text: 'Permissive'
-    },
-    {
-      _id: '2geg0-rg',
-      text: 'Funny'
-    },
-    {
-      _id: '2g7egrg',
-      text: 'Useless'
-    }
-  ];
+  categories: ICategory[] = [];
 
-  constructor(private permissionsService: PermissionsService) { }
+  constructor(
+    private permissionsService: PermissionsService,
+    private categoryService: CategoryService
+    ) { }
 
   ngOnInit(): void {
     this.permissionsService.getPermissions().subscribe(fetchedPermissions => this.permissions = fetchedPermissions);
+    this.categoryService.getCategories().subscribe(fetchedCategories => this.categories = fetchedCategories);
   }
 
   selectPermission(permission: any) {
@@ -81,10 +65,7 @@ export class PermissionsComponent implements OnInit {
   }
 
   add(permission: IPermission) {
-    let tmp = this.permissions;
-    this.permissions = [];
-    this.permissions.push(permission);
-    this.permissions = this.permissions.concat(tmp);
+    this.permissions = this.permissions.concat(permission);
 
     this.permissionsService.createPermission(permission).subscribe();
   }
