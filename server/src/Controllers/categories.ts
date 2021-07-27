@@ -16,9 +16,9 @@ export const createCategory = asyncHandler(async (req: any, res:any) => {
 });
 
 export const deleteCategory = asyncHandler(async (req: any, res: any, next: any) => {
-    const category: CategoryDocument = await Category.findByIdAndDelete(req.body.id);
+    const category: CategoryDocument = await Category.findByIdAndDelete(req.params.id);
 
-    if (!Category) {
+    if (!category) {
         return next(new ErrorResponse(`Category not found with id ${req.body.id}`, 404));
     }
 

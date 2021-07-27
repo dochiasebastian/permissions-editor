@@ -18,7 +18,7 @@ export const createPermission = asyncHandler(async (req: any, res: any) => {
 });
 
 export const deletePermission = asyncHandler(async (req: any, res: any, next: any) => {
-    const permission: PermissionDocument = await Permission.findByIdAndDelete(req.body.id);
+    const permission: PermissionDocument = await Permission.findByIdAndDelete(req.params.id);
 
     if (!permission) {
         return next(new ErrorResponse(`Permission not found with id ${req.body.id}`, 404));
