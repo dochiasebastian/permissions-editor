@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Permission } from 'src/app/model/permission';
+import { IPermission } from 'src/app/model/permission';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 
 @Component({
@@ -9,10 +9,10 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
   styleUrls: ['./permissions-form.component.css']
 })
 export class PermissionsFormComponent implements OnChanges {
-  @Input() currentPermission: Permission | undefined;
+  @Input() currentPermission!: IPermission;
   @Input() inEditMode = false;
-  @Output() updatedPermissionEvent = new EventEmitter<Permission>();
-  @Output() addPermissionEvent = new EventEmitter<Permission>();
+  @Output() updatedPermissionEvent = new EventEmitter<IPermission>();
+  @Output() addPermissionEvent = new EventEmitter<IPermission>();
 
   permissionsForm = new FormGroup({
     text: new FormControl('', [
@@ -31,8 +31,8 @@ export class PermissionsFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     if(this.inEditMode) {
-      this.permissionsForm.get('text')!.setValue(this.currentPermission!.text);
-      this.permissionsForm.get('type')!.setValue(this.currentPermission!.type);
+      this.permissionsForm.get('text')!.setValue(this.currentPermission.text);
+      this.permissionsForm.get('type')!.setValue(this.currentPermission.type);
     } else {
       this.permissionsForm.get('text')!.setValue('');
       this.permissionsForm.get('type')!.setValue('');
@@ -40,7 +40,7 @@ export class PermissionsFormComponent implements OnChanges {
   }
 
   onSubmit() {
-    const newPermission: Permission = {_id: `${this.currentPermission!._id}`, type:`${this.permissionsForm.get('type')!.value}`, text: `${this.permissionsForm.get('text')!.value}`}
+    const newPermission: IPermission = {_id: `${this.currentPermission._id}`, type:`${this.permissionsForm.get('type')!.value}`, text: `${this.permissionsForm.get('text')!.value}`}
 
     if(this.inEditMode) {
       this.updatedPermissionEvent.emit(newPermission);

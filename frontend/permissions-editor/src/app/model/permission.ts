@@ -1,7 +1,5 @@
-export class Permission {
-    constructor(
-        public _id: string,
-        public type: string, 
-        public text: string
-    ) { }
+export interface IPermission {
+    _id: string,
+    type: string, 
+    text: string
 }

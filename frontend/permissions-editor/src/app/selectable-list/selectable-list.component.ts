@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { Category } from '../model/category';
-import { Permission } from '../model/permission';
+import { ICategory } from '../model/category';
+import { IPermission } from '../model/permission';
 
 @Component({
   selector: 'app-selectable-list',
@@ -9,13 +9,13 @@ import { Permission } from '../model/permission';
   styleUrls: ['./selectable-list.component.css']
 })
 export class SelectableListComponent implements OnInit {
-  @Input() list: Category[] | Permission[] = [];
+  @Input() list: ICategory[] | IPermission[] = [];
   @Input() title: string = 'Title';
-  @Output() currentItemEvent = new EventEmitter<Category | Permission>();
+  @Output() currentItemEvent = new EventEmitter<ICategory | IPermission>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
-  @Output() toDeleteItemsEvent = new EventEmitter<Category[] | Permission[]>();
+  @Output() toDeleteItemsEvent = new EventEmitter<ICategory[] | IPermission[]>();
 
-  selectedOptions: Category[] | Permission[] = [];
+  selectedOptions: ICategory[] | IPermission[] = [];
 
   @ViewChild('itemsList') itemsList: MatSelectionList | undefined;
   allSelected = false;
@@ -26,7 +26,7 @@ export class SelectableListComponent implements OnInit {
     this.resetItem();
   }
 
-  selectItem(category: Category) {
+  selectItem(category: ICategory) {
     this.currentItemEvent.emit(category);
     this.selectedCountEvent.emit(this.itemsList!.selectedOptions.selected.length);
   }
@@ -44,7 +44,7 @@ export class SelectableListComponent implements OnInit {
     this.deselectAll();
   }
 
-  onNgModelChange(categories: Category[]) {
+  onNgModelChange(categories: ICategory[]) {
     this.selectedOptions = categories;
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../model/category';
-import { Permission } from '../model/permission';
+import { ICategory } from '../model/category';
+import { IPermission } from '../model/permission';
 
 @Component({
   selector: 'app-permissions',
@@ -8,7 +8,7 @@ import { Permission } from '../model/permission';
   styleUrls: ['./permissions.component.css']
 })
 export class PermissionsComponent implements OnInit {
-  currentPermission: Permission = {
+  currentPermission: IPermission = {
     _id: '',
     type: '',
     text: ''
@@ -61,7 +61,7 @@ export class PermissionsComponent implements OnInit {
   }
 
   updatePermission(updatedPermission: any) {
-    const toUpdateIndex = this.permissions.findIndex((permission: Permission) => permission._id == updatedPermission._id);
+    const toUpdateIndex = this.permissions.findIndex((permission: IPermission) => permission._id == updatedPermission._id);
 
     this.permissions[toUpdateIndex].text = updatedPermission.text;
   }
@@ -76,11 +76,11 @@ export class PermissionsComponent implements OnInit {
     }
   }
 
-  deleteItem(permissionsToDelete: Permission[] | Category[]) {
+  deleteItem(permissionsToDelete: IPermission[] | ICategory[]) {
     this.permissions = this.permissions.filter(permission => !permissionsToDelete.includes(permission));
   }
 
-  add(permission: Permission) {
+  add(permission: IPermission) {
     let tmp = this.permissions;
     this.permissions = [];
     this.permissions.push(permission);

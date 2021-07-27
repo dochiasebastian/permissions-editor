@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Category } from '../model/category';
-import { Permission } from '../model/permission';
+import { ICategory } from '../model/category';
+import { IPermission } from '../model/permission';
 
 @Component({
   selector: 'app-categories',
@@ -8,7 +8,7 @@ import { Permission } from '../model/permission';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  currentCategory: Category = {
+  currentCategory: ICategory = {
     _id: '',
     text: ''
   };
@@ -39,9 +39,9 @@ export class CategoriesComponent implements OnInit {
     }
   ];
 
-  selectedPermissions: Permission[] = [];
+  selectedPermissions: IPermission[] = [];
 
-  permissions: Permission[] = [
+  permissions: IPermission[] = [
     {
       _id: 'f32f3e2',
       type: "Necessary",
@@ -79,7 +79,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectCategory(category: Category) {
+  selectCategory(category: ICategory) {
     this.currentCategory = category;
     if(category.text === "All") {
       this.selectedPermissions = this.permissions;
@@ -88,8 +88,8 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  updateCategory(updatedCategory: Category) {
-    const toUpdateIndex = this.categories.findIndex((category: Category) => category._id == updatedCategory._id);
+  updateCategory(updatedCategory: ICategory) {
+    const toUpdateIndex = this.categories.findIndex((category: ICategory) => category._id == updatedCategory._id);
 
     this.categories[toUpdateIndex].text = updatedCategory.text;
   }
@@ -104,11 +104,11 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  deleteItem(categoriesToDelete: Category[]) {
+  deleteItem(categoriesToDelete: ICategory[]) {
     this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
   }
 
-  add(category: Category) {
+  add(category: ICategory) {
     let tmp = this.categories;
     this.categories = [];
     this.categories.push(category);

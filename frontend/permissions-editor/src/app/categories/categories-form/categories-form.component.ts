@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Category } from 'src/app/model/category';
+import { ICategory } from 'src/app/model/category';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 
 @Component({
@@ -9,10 +9,10 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
   styleUrls: ['./categories-form.component.css']
 })
 export class CategoriesFormComponent implements OnChanges {
-  @Input() currentCategory: Category | undefined;
+  @Input() currentCategory: ICategory | undefined;
   @Input() inEditMode = false;
-  @Output() updatedCategoryEvent = new EventEmitter<Category>();
-  @Output() addCategoryEvent = new EventEmitter<Category>();
+  @Output() updatedCategoryEvent = new EventEmitter<ICategory>();
+  @Output() addCategoryEvent = new EventEmitter<ICategory>();
 
   categoryFormControl = new FormControl('', [
     Validators.required,
@@ -32,7 +32,7 @@ export class CategoriesFormComponent implements OnChanges {
   }
 
   onSubmit() {
-    const newCategory: Category = {_id: `${this.currentCategory?._id}`, text: `${this.categoryFormControl.value}`}
+    const newCategory: ICategory = {_id: `${this.currentCategory?._id}`, text: `${this.categoryFormControl.value}`}
 
     if(this.inEditMode) {
       this.updatedCategoryEvent.emit(newCategory);
