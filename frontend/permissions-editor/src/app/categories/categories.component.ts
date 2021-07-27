@@ -1,6 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
+import { CategoryService } from '../util/categories.service';
+import { PermissionsService } from '../util/permissions.service';
 
 @Component({
   selector: 'app-categories',
@@ -16,67 +18,20 @@ export class CategoriesComponent implements OnInit {
 
   inEditMode = false;
 
-  categories = [
-    {
-      _id: '1e1dw3d',
-      text: 'All'
-    },
-    {
-      _id: 'gdfsgsdg',
-      text: 'Necessary'
-    },
-    {
-      _id: '32t2gvedg',
-      text: 'Permissive'
-    },
-    {
-      _id: '2geg0-rg',
-      text: 'Funny'
-    },
-    {
-      _id: '2g7egrg',
-      text: 'Useless'
-    }
-  ];
+  categories: ICategory[] = [];
+
+  permissions: IPermission[] = [];
 
   selectedPermissions: IPermission[] = [];
 
-  permissions: IPermission[] = [
-    {
-      _id: 'f32f3e2',
-      type: "Necessary",
-      text: "Send all your data to Mr Zuck"
-    },
-    {
-      _id: 'f3r23r2',
-      type: "Necessary",
-      text: "Record and store all private interactions"
-    },
-    {
-      _id: 'f32532e2',
-      type: "Permissive",
-      text: "Harvest device specifications"
-    },
-    {
-      _id: 'fsfgd3e2',
-      type: "Permissive",
-      text: "Laugh at your poor life choices"
-    },
-    {
-      _id: 'f332tfe2',
-      type: "Permissive",
-      text: "Send you daily monke memes"
-    },
-    {
-      _id: 'f32gfee2',
-      type: "Permissive",
-      text: "Read Berserk by Kentaro Miura on your behalf"
-    },
-  ];
-
-  constructor() { }
+  constructor(
+    private categoryService: CategoryService, 
+    private permissionsService: PermissionsService
+    ) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(fetchedCategories => this.categories = fetchedCategories);
+    this.permissionsService.getPermissions().subscribe(fetchedPermissions => this.permissions = fetchedPermissions);
   }
 
   selectCategory(category: ICategory) {
@@ -92,6 +47,8 @@ export class CategoriesComponent implements OnInit {
     const toUpdateIndex = this.categories.findIndex((category: ICategory) => category._id == updatedCategory._id);
 
     this.categories[toUpdateIndex].text = updatedCategory.text;
+
+    this.categoryService.updateCategory(updatedCategory).subscribe();
   }
 
   setCount(count: number) {
@@ -106,13 +63,16 @@ export class CategoriesComponent implements OnInit {
 
   deleteItem(categoriesToDelete: ICategory[]) {
     this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
+
+    categoriesToDelete.forEach(category => {
+      this.categoryService.deleteCategory(category).subscribe();
+    });
   }
 
   add(category: ICategory) {
-    let tmp = this.categories;
-    this.categories = [];
-    this.categories.push(category);
-    this.categories = this.categories.concat(tmp);
+    this.categories = this.categories.concat(category);
+
+    this.categoryService.createCategory(category).subscribe();
   }
 
 }
