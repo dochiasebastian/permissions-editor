@@ -49,7 +49,7 @@ export class PermissionsComponent implements OnInit {
   setCount(count: number) {
     this.selectedCount = count;
 
-    if (!this.selectedCount) {
+    if (this.selectedCount !== 1) {
       this.inEditMode = false;
     } else {
       this.inEditMode = true;

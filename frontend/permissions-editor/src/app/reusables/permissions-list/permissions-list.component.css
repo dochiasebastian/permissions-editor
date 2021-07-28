@@ -1,5 +1,5 @@
 .scroll-list-container {
-    height: calc(100% - 80px);
+    height: 100%;
 }
 
 .scroll-list {

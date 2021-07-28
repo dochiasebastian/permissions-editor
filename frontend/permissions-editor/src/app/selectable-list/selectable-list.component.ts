@@ -14,6 +14,7 @@ export class SelectableListComponent implements OnInit {
   @Output() currentItemEvent = new EventEmitter<ICategory | IPermission>();
   @Output() selectedCountEvent = new EventEmitter<Number>();
   @Output() toDeleteItemsEvent = new EventEmitter<any []>();
+  @Output() selectedItemsEvent = new EventEmitter<any []>();
 
   selectedOptions: ICategory[] | IPermission[] = [];
 
@@ -29,6 +30,7 @@ export class SelectableListComponent implements OnInit {
   selectItem(category: ICategory) {
     this.currentItemEvent.emit(category);
     this.selectedCountEvent.emit(this.itemsList!.selectedOptions.selected.length);
+    this.selectedItemsEvent.emit(this.selectedOptions);
   }
 
   resetItem() {

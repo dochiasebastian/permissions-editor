@@ -14,7 +14,9 @@ export class CategoriesComponent implements OnInit {
     _id: '',
     text: ''
   };
+
   selectedCount = 0;
+  selectedCategories: ICategory[] = [];
 
   inEditMode = false;
 
@@ -36,12 +38,23 @@ export class CategoriesComponent implements OnInit {
   selectCategory(category: ICategory) {
     this.currentCategory = category;
 
-    if(category.text === "All") {
-      this.selectedPermissions = this.permissions;
-      return;
-    }
+    
 
-    this.selectedPermissions = this.permissions.filter(permission => permission.type == category.text);
+    
+  }
+
+  setSelected(selected: ICategory[]) {
+    this.selectedCategories = selected;
+    this.selectedPermissions = [];
+
+    selected.forEach(category => {
+      if(category.text === "All") {
+        this.selectedPermissions = this.permissions;
+        return;
+      }
+
+      this.selectedPermissions = this.selectedPermissions.concat(this.permissions.filter(permission => permission.type == category.text));
+    });
   }
 
   updateCategory(updatedCategory: ICategory) {
@@ -55,7 +68,7 @@ export class CategoriesComponent implements OnInit {
   setCount(count: number) {
     this.selectedCount = count;
 
-    if (!this.selectedCount) {
+    if (this.selectedCount !== 1) {
       this.inEditMode = false;
     } else {
       this.inEditMode = true;
