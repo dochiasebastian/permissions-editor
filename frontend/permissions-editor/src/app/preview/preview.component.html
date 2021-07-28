@@ -1,4 +1,16 @@
-<div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="!matSelect.panelOpen && onMouseLeave($event)">
+<div>
+    <mat-card>
+        <mat-card-title>
+            <mat-card-header>
+                <h1>Your preferences</h1>
+            </mat-card-header>
+        </mat-card-title>
+        <mat-card-content>
+
+        </mat-card-content>
+    </mat-card>
+</div>
+<div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="!matSelect.panelOpen && onMouseLeave()">
     <mat-card class="pop-up-card">
         <div class="bar"></div>
         <mat-card-title>
@@ -23,7 +35,7 @@
                     <div class="scroll-list-container">
                         <mat-selection-list name="permissionsList" [(ngModel)]="selectedOptions" class="scroll-list">
                             <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=permissions.length>
-                                <mat-list-option *cdkVirtualFor="let permission of permissions" [value]="permission">
+                                <mat-list-option *cdkVirtualFor="let permission of permissions" [value]="permission" [disabled]="permission.type === 'Necessary'" [selected]="permission.type === 'Necessary'">
                                     <h3 matLine>{{permission.text}}</h3>
                                     <p matLine>{{permission.type}}</p>
                                 </mat-list-option>

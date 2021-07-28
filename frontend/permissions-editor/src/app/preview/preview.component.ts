@@ -21,7 +21,7 @@ export class PreviewComponent implements OnInit {
 
   constructor(private categoriesService: CategoriesService, private permissionsService: PermissionsService) { }
 
-  onMouseLeave(event: MouseEvent) {
+  onMouseLeave() {
     const toDeleteIndex = this.classes.indexOf('showing');
     if(toDeleteIndex !== -1) {
       this.classes.splice(toDeleteIndex, 1)
@@ -33,7 +33,12 @@ export class PreviewComponent implements OnInit {
   }
 
   onCategoryChange() {
-    this.selectedOptions = this.permissions.filter(permission => permission.type === this.selected)
+    if(this.selected === "All") {
+      this.selectedOptions = this.permissions;
+      return;
+    }
+
+    this.selectedOptions = this.permissions.filter(permission => permission.type === this.selected || permission.type === "Necessary")
   }
 
   ngOnInit(): void {
