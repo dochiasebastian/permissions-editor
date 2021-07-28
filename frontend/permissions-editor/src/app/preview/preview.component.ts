@@ -22,7 +22,10 @@ export class PreviewComponent implements OnInit {
   constructor(private categoriesService: CategoriesService, private permissionsService: PermissionsService) { }
 
   onMouseLeave(event: MouseEvent) {
-    this.classes.splice(this.classes.indexOf('showing', 0), 1)
+    const toDeleteIndex = this.classes.indexOf('showing');
+    if(toDeleteIndex !== -1) {
+      this.classes.splice(toDeleteIndex, 1)
+    }
   }
 
   onSubmit() {
