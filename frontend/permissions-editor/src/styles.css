@@ -99,18 +99,6 @@ mat-list-item:hover {
 
 .mat-card-header button {
     margin-left: 10px;
-    width: 30px;
-    height: 30px;
-}
-
-.mat-card-header mat-icon {
-    width: 25px;
-    height: 25px;
-    margin-bottom: 5px;
-}
-
-.mat-card-header .mat-mini-fab .mat-button-wrapper {
-    padding: 0 !important;
 }
 
 .mat-grid-tile .mat-figure {
