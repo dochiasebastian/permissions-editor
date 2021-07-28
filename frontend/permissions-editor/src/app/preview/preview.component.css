@@ -44,3 +44,7 @@ mat-card-header {
     top: 0;
     left: 0;
 }
+
+.pref-display {
+    margin: 40px;
+}
