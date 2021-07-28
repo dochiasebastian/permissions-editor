@@ -16,6 +16,7 @@ import { CategoriesListComponent } from './reusables/categories-list/categories-
 import { PermissionsListComponent } from './reusables/permissions-list/permissions-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TitleOnlyPipe } from './util/titleOnly.pipe';
+import { ColorFalsyDirective } from './util/color-falsy.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TitleOnlyPipe } from './util/titleOnly.pipe';
     PreviewComponent,
     CategoriesListComponent,
     PermissionsListComponent,
-    TitleOnlyPipe
+    TitleOnlyPipe,
+    ColorFalsyDirective
   ],
   imports: [
     BrowserModule,

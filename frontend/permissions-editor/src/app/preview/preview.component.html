@@ -6,7 +6,7 @@
     </mat-card-title>
     <mat-card-content>
         <mat-error *ngIf="!preferences[1]" color="warn">You have not submitted any preferences yet!</mat-error>
-        <p *ngFor="let preference of preferences">{{preference | titleOnly}}</p>
+        <p *ngFor="let preference of preferences" [appColorFalsy]="preference.isAllowed">{{preference | titleOnly}}</p>
     </mat-card-content>
 </mat-card>
 <div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="!matSelect.panelOpen && onMouseLeave()">
