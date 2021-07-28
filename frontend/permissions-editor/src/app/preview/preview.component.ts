@@ -14,6 +14,7 @@ import { PreferenceService } from '../util/preferences.service';
 export class PreviewComponent implements OnInit {
   categories: ICategory[] = [];
   permissions: IPermission[] = [];
+  preferences: IPreference[] = [];
 
   selected = '';
 
@@ -44,7 +45,7 @@ export class PreviewComponent implements OnInit {
       };
     });
 
-    this.preferencesService.postPreferences(message).subscribe();
+    this.preferencesService.postPreferences(message).subscribe(fetchedPreferences => this.preferences = fetchedPreferences);
   }
 
   onCategoryChange() {

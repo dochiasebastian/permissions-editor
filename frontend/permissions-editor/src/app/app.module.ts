@@ -15,6 +15,7 @@ import { PreviewComponent } from './preview/preview.component';
 import { CategoriesListComponent } from './reusables/categories-list/categories-list.component';
 import { PermissionsListComponent } from './reusables/permissions-list/permissions-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TitleOnlyPipe } from './util/titleOnly.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     PermissionsFormComponent,
     PreviewComponent,
     CategoriesListComponent,
-    PermissionsListComponent
+    PermissionsListComponent,
+    TitleOnlyPipe
   ],
   imports: [
     BrowserModule,

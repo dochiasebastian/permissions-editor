@@ -19,10 +19,7 @@ export class PreferenceService {
             JSON.stringify(preferences),
             { headers: this._headerService.getHeaders() })
             .pipe(
-                map((result: any) => result['data']),
-                tap(data => {
-                    console.log(data);
-                })
+                map((result: any) => result['data'])
             );
     }
 }

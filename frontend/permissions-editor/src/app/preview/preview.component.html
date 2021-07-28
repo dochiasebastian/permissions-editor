@@ -6,7 +6,7 @@
             </mat-card-header>
         </mat-card-title>
         <mat-card-content>
-
+            <p *ngFor="let preference of preferences">{{preference | titleOnly}}</p>
         </mat-card-content>
     </mat-card>
 </div>
