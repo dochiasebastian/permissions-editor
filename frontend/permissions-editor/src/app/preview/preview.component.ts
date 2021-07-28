@@ -21,6 +21,10 @@ export class PreviewComponent implements OnInit {
 
   constructor(private categoriesService: CategoriesService, private permissionsService: PermissionsService) { }
 
+  onMouseLeave(event: MouseEvent) {
+    this.classes.splice(this.classes.indexOf('showing', 0), 1)
+  }
+
   onSubmit() {
 
   }

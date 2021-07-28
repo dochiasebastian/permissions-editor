@@ -1,4 +1,4 @@
-<div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="classes.splice(classes.indexOf('showing', 0), 1)">
+<div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="!matSelect.panelOpen && onMouseLeave($event)">
     <mat-card class="pop-up-card">
         <div class="bar"></div>
         <mat-card-title>
@@ -11,7 +11,7 @@
                 <h2>Presets:</h2>
                 <mat-form-field appearance="fill" class="input-text-form">
                     <mat-label>Type</mat-label>
-                    <mat-select name="categorySelector" [(ngModel)]="selected" (ngModelChange)="onCategoryChange()">
+                    <mat-select #matSelect="matSelect"  [(ngModel)]="selected" (ngModelChange)="onCategoryChange()">
                         <mat-option *ngFor="let category of categories" [value]="category.text">{{category.text}}
                         </mat-option>
                     </mat-select>
