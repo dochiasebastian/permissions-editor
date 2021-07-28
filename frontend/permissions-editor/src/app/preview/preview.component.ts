@@ -17,6 +17,8 @@ export class PreviewComponent implements OnInit {
 
   selectedOptions: IPermission[] = [];
 
+  classes: string[] = ['pop-up', 'hidden'];
+
   constructor(private categoriesService: CategoriesService, private permissionsService: PermissionsService) { }
 
   onSubmit() {

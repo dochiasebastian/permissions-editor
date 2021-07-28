@@ -1,8 +1,22 @@
 .pop-up {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     margin-left: 25vw;
     width: 30vw;
+    transition: bottom 200ms linear 50ms;
+}
+
+.pop-up.hidden:hover {
+    bottom: -600px;
+}
+
+.hidden {
+    bottom: -640px;
+    transition: bottom 200ms linear 50ms;
+}
+
+.showing {
+    bottom: 0 !important;
 }
 
 .pop-up-card {
