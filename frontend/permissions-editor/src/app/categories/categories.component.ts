@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
-import { CategoryService } from '../util/categories.service';
+import { CategoriesService } from '../util/categories.service';
 import { PermissionsService } from '../util/permissions.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class CategoriesComponent implements OnInit {
   selectedPermissions: IPermission[] = [];
 
   constructor(
-    private categoryService: CategoryService, 
+    private categoryService: CategoriesService, 
     private permissionsService: PermissionsService
     ) { }
 

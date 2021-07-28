@@ -8,7 +8,7 @@ import { HeaderService } from './header.service';
 import { ICategory } from '../model/category';
 
 @Injectable({ providedIn: 'root' })
-export class CategoryService {
+export class CategoriesService {
     category$ = new BehaviorSubject<ICategory[]>([{ _id: '', text: '' }]);
 
     constructor(private _headerService: HeaderService, private _http: HttpClient) { }

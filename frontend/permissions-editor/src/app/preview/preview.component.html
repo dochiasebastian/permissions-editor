@@ -1,5 +1,5 @@
-<div>
-    <mat-card>
+<div class="pop-up">
+    <mat-card class="pop-up-card">
         <div class="bar"></div>
         <mat-card-title>
             <mat-card-header>
@@ -7,19 +7,31 @@
             </mat-card-header>
         </mat-card-title>
         <mat-card-content>
-            <div>
+            <section>
                 <h2>Presets:</h2>
-                <app-categories-list></app-categories-list>
-            </div>
-            <div>
+                <mat-form-field appearance="fill" class="input-text-form">
+                    <mat-label>Type</mat-label>
+                    <mat-select name="categorySelector" [(ngModel)]="selected" (ngModelChange)="onCategoryChange()" >
+                        <mat-option *ngFor="let category of categories" [value]="category.text">{{category.text}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+            <section>
                 <h2>Permissions:</h2>
                 <form>
-                    <div>
-                        <app-permissions-list></app-permissions-list>
+                    <div class="scroll-list-container">
+                        <mat-selection-list name="permissionsList" [(ngModel)]="selectedOptions" class="scroll-list">
+                            <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=permissions.length>
+                                <mat-list-option *cdkVirtualFor="let permission of permissions" [value]="permission">
+                                    <h3 matLine>{{permission.text}}</h3>
+                                    <p matLine>{{permission.type}}</p>
+                                </mat-list-option>
+                            </cdk-virtual-scroll-viewport>
+                        </mat-selection-list>
                     </div>
                     <button type="submit" mat-raised-button color="accent">Submit</button>
                 </form>
-            </div>
+            </section>
         </mat-card-content>
     </mat-card>
 </div>
