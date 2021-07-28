@@ -6,7 +6,7 @@
             [list]="permissions" 
             (currentItemEvent)="selectPermission($event)" 
             (selectedCountEvent)="setCount($event.valueOf())" 
-            (toDeleteItemsEvent)="deleteItem($event)">
+            (toDeleteItemsEvent)="deletePermission($event)">
             </app-selectable-list>
         </mat-grid-tile>
         <mat-grid-tile class="mat-elevation-z4">

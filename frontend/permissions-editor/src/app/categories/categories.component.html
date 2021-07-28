@@ -6,7 +6,7 @@
             [list]="categories" 
             (currentItemEvent)="selectCategory($event)" 
             (selectedCountEvent)="setCount($event.valueOf())" 
-            (toDeleteItemsEvent)="deleteItem($event)" 
+            (toDeleteItemsEvent)="deleteCategory($event)" 
             (selectedItemsEvent)="setSelected($event)"
             class="fill">
             </app-selectable-list>

@@ -37,10 +37,6 @@ export class CategoriesComponent implements OnInit {
 
   selectCategory(category: ICategory) {
     this.currentCategory = category;
-
-    
-
-    
   }
 
   setSelected(selected: ICategory[]) {
@@ -53,7 +49,7 @@ export class CategoriesComponent implements OnInit {
         return;
       }
 
-      this.selectedPermissions = this.selectedPermissions.concat(this.permissions.filter(permission => permission.type == category.text));
+      this.selectedPermissions = this.selectedPermissions.concat(this.filterPermissions(category));
     });
   }
 
@@ -75,18 +71,35 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  deleteItem(categoriesToDelete: ICategory[]) {
+  deleteCategory(categoriesToDelete: ICategory[]) {
     this.categories = this.categories.filter(category => !categoriesToDelete.includes(category));
+    let permissionsToDelete: IPermission[] = [];
+
+    categoriesToDelete.forEach(category => {
+      permissionsToDelete = permissionsToDelete.concat(this.filterPermissions(category));
+    });
 
     categoriesToDelete.forEach(category => {
       this.categoryService.deleteCategory(category).subscribe();
     });
+
+    console.log(permissionsToDelete);
+
+    permissionsToDelete.forEach(permission => {
+      this.permissionsService.deletePermission(permission).subscribe();
+    });
+
+    this.selectedPermissions = [];
   }
 
   add(category: ICategory) {
     this.categories = this.categories.concat(category);
 
     this.categoryService.createCategory(category).subscribe();
+  }
+
+  filterPermissions(category: ICategory): IPermission[] {
+    return this.permissions.filter(permission => permission.type === category.text);
   }
 
 }
