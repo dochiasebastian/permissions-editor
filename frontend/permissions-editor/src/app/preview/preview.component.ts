@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
 import { IPreference } from '../model/preference';
@@ -9,7 +9,8 @@ import { PreferenceService } from '../util/preferences.service';
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.css']
+  styleUrls: ['./preview.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreviewComponent implements OnInit {
   categories: ICategory[] = [];

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ICategory } from 'src/app/model/category';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
@@ -6,7 +6,8 @@ import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 @Component({
   selector: 'app-categories-form',
   templateUrl: './categories-form.component.html',
-  styleUrls: ['./categories-form.component.css']
+  styleUrls: ['./categories-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesFormComponent implements OnChanges {
   @Input() currentCategory: ICategory | undefined;

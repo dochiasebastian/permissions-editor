@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
@@ -6,7 +6,8 @@ import { IPermission } from '../model/permission';
 @Component({
   selector: 'app-selectable-list',
   templateUrl: './selectable-list.component.html',
-  styleUrls: ['./selectable-list.component.css']
+  styleUrls: ['./selectable-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectableListComponent implements OnInit {
   @Input() list: ICategory[] | IPermission[] = [];

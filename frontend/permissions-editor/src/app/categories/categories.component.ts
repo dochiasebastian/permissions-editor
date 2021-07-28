@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Output } from '@angular/core';
 import { ICategory } from '../model/category';
 import { IPermission } from '../model/permission';
 import { CategoriesService } from '../util/categories.service';
@@ -7,7 +7,8 @@ import { PermissionsService } from '../util/permissions.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  styleUrls: ['./categories.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesComponent implements OnInit {
   currentCategory: ICategory = {
