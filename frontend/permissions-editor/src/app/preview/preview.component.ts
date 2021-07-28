@@ -30,7 +30,7 @@ export class PreviewComponent implements OnInit {
 
   onMouseLeave() {
     const toDeleteIndex = this.classes.indexOf('showing');
-    if(toDeleteIndex !== -1) {
+    if (toDeleteIndex !== -1) {
       this.classes.splice(toDeleteIndex, 1)
     }
   }
@@ -39,17 +39,20 @@ export class PreviewComponent implements OnInit {
     let message: IPreference[];
 
     message = this.permissions.map(permission => {
-      return { 
+      return {
         permission: permission.text,
-        isAllowed: this.selectedOptions.includes(permission) 
+        isAllowed: this.selectedOptions.includes(permission)
       };
     });
 
-    this.preferencesService.postPreferences(message).subscribe(fetchedPreferences => this.preferences = fetchedPreferences);
+    this.preferencesService.postPreferences(message)
+      .subscribe(fetchedPreferences => 
+        this.preferences = fetchedPreferences.sort(this.comparator)
+      );
   }
 
   onCategoryChange() {
-    if(this.selected === "All") {
+    if (this.selected === "All") {
       this.selectedOptions = this.permissions;
       return;
     }
@@ -67,5 +70,17 @@ export class PreviewComponent implements OnInit {
       });
   }
 
-  
+  comparator(a: IPreference, b: IPreference) {
+    const permissionA = a.permission.toUpperCase();
+    const permissionB = b.permission.toUpperCase();
+
+    let comparison = 0;
+    if (permissionA > permissionB) {
+      comparison = 1;
+    } else if (permissionA < permissionB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
 }
