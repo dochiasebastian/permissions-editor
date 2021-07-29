@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { HeaderService } from './header.service';
 import { ICategory } from '../model/category';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 export class CategoriesService {
     category$ = new BehaviorSubject<ICategory[]>([{ _id: '', text: '' }]);
 

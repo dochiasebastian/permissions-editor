@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { HeaderService } from './header.service';
 import { IPermission } from '../model/permission';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 export class PermissionsService {
     permissions$ = new BehaviorSubject<IPermission[]>([{ _id: '', type: '', text: '' }]);
 

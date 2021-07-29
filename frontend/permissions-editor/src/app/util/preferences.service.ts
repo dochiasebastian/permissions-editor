@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { HeaderService } from './header.service';
 import { IPreference } from '../model/preference';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 export class PreferenceService {
     preferences$ = new BehaviorSubject<IPreference[]>([]);
 
