@@ -1,1 +1,32 @@
-<p>signup works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h1>SignUp</h1>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. gustavus.adolphus@gmail.se"/>
+                <mat-error *ngIf= "signupForm.get('email')!.hasError('email') && !signupForm.get('email')!.hasError('required')">Please enter a valid <strong>vaild</strong> email</mat-error>
+                <mat-error *ngIf= "signupForm.get('email')!.hasError('required')">Email is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. gustavus.adolphus@gmail.se"/>
+                <mat-error *ngIf= "signupForm.get('name')!.hasError('maxlength') && !signupForm.get('name')!.hasError('required')">Name name cannot be longer than <strong>30 characters</strong></mat-error>
+                <mat-error *ngIf= "signupForm.get('name')!.hasError('required')">Name is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher" />
+                <mat-error *ngIf= "signupForm.get('password')!.hasError('minlength') && !signupForm.get('password')!.hasError('required')">Password must be at least <strong>6 characters</strong> long</mat-error>
+                <mat-error *ngIf= "signupForm.get('password')!.hasError('required')">Password name is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="submit-group">
+                <button type="submit" [disabled]="!signupForm.valid" mat-raised-button color="accent">Submit</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
