@@ -4,19 +4,17 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { HeaderService } from './header.service';
 import { IPermission } from '../model/permission';
 
 @Injectable({ providedIn: 'any' })
 export class PermissionsService {
     permissions$ = new BehaviorSubject<IPermission[]>([{ _id: '', type: '', text: '' }]);
 
-    constructor(private _headerService: HeaderService, private _http: HttpClient) { }
+    constructor(private _http: HttpClient) { }
 
     getPermissions(): Observable<IPermission[]> {
         return this._http.get(
-            `${environment.apiUrl}/permissions`,
-            { headers: this._headerService.getHeaders() })
+            `${environment.apiUrl}/permissions`)
             .pipe(
                 map((result: any) => result['data']),
                 tap(data => {
@@ -28,8 +26,7 @@ export class PermissionsService {
     createPermission(newPermission: IPermission): Observable<IPermission[]> {
         return this._http.post(
             `${environment.apiUrl}/permissions`,
-            JSON.stringify(newPermission),
-            { headers: this._headerService.getHeaders() })
+            JSON.stringify(newPermission))
             .pipe(
                 map((result: any) => result['data']),
                 tap(data => {
@@ -40,8 +37,7 @@ export class PermissionsService {
 
     deletePermission(toDeletePermission: IPermission): Observable<IPermission[]> {
         return this._http.delete(
-            `${environment.apiUrl}/permissions/delete/${toDeletePermission._id}`,
-            { headers: this._headerService.getHeaders() })
+            `${environment.apiUrl}/permissions/delete/${toDeletePermission._id}`)
             .pipe(
                 map((result: any) => result['data']),
                 tap(data => {
@@ -53,8 +49,7 @@ export class PermissionsService {
     updatePermission(toUpdatePermission: IPermission): Observable<IPermission[]> {
         return this._http.put(
             `${environment.apiUrl}/permissions/update`,
-            JSON.stringify(toUpdatePermission),
-            { headers: this._headerService.getHeaders() })
+            JSON.stringify(toUpdatePermission))
             .pipe(
                 map((result: any) => result['data']),
                 tap(data => {

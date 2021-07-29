@@ -6,7 +6,6 @@ import { map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { IUser } from '../model/user';
 import { CookieService } from 'ngx-cookie-service';
-import { HeaderService } from './header.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -16,7 +15,6 @@ export class AuthenticationService {
     constructor(
         private http: HttpClient,
         private cookieService: CookieService,
-        private headerService: HeaderService
     ) {
         this.currentUserSubject$ = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser') || ''));
         this.currentUser$ = this.currentUserSubject$.asObservable();
@@ -53,7 +51,7 @@ export class AuthenticationService {
 
     getCurrentUser() {
         console.log("Getting current user");
-        return this.http.get<any>(`${environment.apiUrl}/auth/me`, { headers: this.headerService.getHeaders() }).pipe(map(result => result['data']), tap(user => {
+        return this.http.get<any>(`${environment.apiUrl}/auth/me`, ).pipe(map(result => result['data']), tap(user => {
             localStorage.setItem('currentUser$', JSON.stringify(user));
             this.currentUserSubject$.next(user);
             console.log(user);
