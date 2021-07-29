@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesComponent } from './categories/categories.component';
-import { PermissionsComponent } from './permissions/permissions.component';
-import { PreviewComponent } from './preview/preview.component';
 
 const routes: Routes = [
-  {path: 'categories', component: CategoriesComponent},
-  {path: 'permissions', component: PermissionsComponent},
-  {path: 'preview', component: PreviewComponent}
+  { path: 'categories', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) },
+  { path: 'permissions', loadChildren: () => import('./permissions/permissions.module').then(m => m.PermissionsModule) },
+  { path: 'preview', loadChildren: () => import('./preview/preview.module').then(m => m.PreviewModule) }
 ];
 
 @NgModule({

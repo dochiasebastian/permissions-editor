@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { IPermission } from 'src/app/model/permission';
 
 @Component({
-  selector: 'app-permissions-list',
+  selector: 'permissions-permissions-list',
   templateUrl: './permissions-list.component.html',
   styleUrls: ['./permissions-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

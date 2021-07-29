@@ -5,7 +5,7 @@ import { IPermission } from 'src/app/model/permission';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 
 @Component({
-  selector: 'app-permissions-form',
+  selector: 'permissions-permissions-form',
   templateUrl: './permissions-form.component.html',
   styleUrls: ['./permissions-form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

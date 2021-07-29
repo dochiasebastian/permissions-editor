@@ -5,7 +5,7 @@ import { CategoriesService } from '../util/categories.service';
 import { PermissionsService } from '../util/permissions.service';
 
 @Component({
-  selector: 'app-permissions',
+  selector: 'permissions-permissions',
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.css']
 })

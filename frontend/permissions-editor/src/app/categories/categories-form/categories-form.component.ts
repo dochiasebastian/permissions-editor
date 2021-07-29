@@ -4,7 +4,7 @@ import { ICategory } from 'src/app/model/category';
 import { CustomErrorStateMatcher } from 'src/app/util/customErrorStateMatcher';
 
 @Component({
-  selector: 'app-categories-form',
+  selector: 'categories-categories-form',
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
