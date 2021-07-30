@@ -1,0 +1,51 @@
+.pop-up {
+    position: fixed;
+    bottom: 0;
+    margin-left: 25vw;
+    width: 30vw;
+    transition: bottom 200ms linear 50ms;
+}
+
+.pop-up.hidden:hover {
+    bottom: -600px;
+}
+
+.hidden {
+    bottom: -640px;
+    transition: bottom 200ms linear 50ms;
+}
+
+.showing {
+    bottom: 0 !important;
+}
+
+.pop-up-card {
+    height: 650px;
+}
+
+.scroll-list-container {
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.scroll-list {
+    height: 100%;
+}
+
+mat-card-header {
+    margin-top: 40px;
+}
+
+.bar {
+    width: 100%;
+    height: 10px;
+    background-color: #673AB7;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pref-display {
+    margin: 40px;
+    padding: 40px;
+}

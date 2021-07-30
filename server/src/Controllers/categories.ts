@@ -16,9 +16,9 @@ export const createCategory = asyncHandler(async (req: any, res:any) => {
 });
 
 export const deleteCategory = asyncHandler(async (req: any, res: any, next: any) => {
-    const category: CategoryDocument = await Category.findByIdAndDelete(req.body.id);
+    const category: CategoryDocument = await Category.findByIdAndDelete(req.params.id);
 
-    if (!Category) {
+    if (!category) {
         return next(new ErrorResponse(`Category not found with id ${req.body.id}`, 404));
     }
 
@@ -32,7 +32,7 @@ export const getCategory = asyncHandler(async (req: any, res: any) => {
 });
 
 export const updateCategory = asyncHandler(async (req: any, res: any, next: any) => {
-    const category = await Category.findByIdAndUpdate(req.body.id, req.body, {
+    const category = await Category.findByIdAndUpdate(req.body._id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false

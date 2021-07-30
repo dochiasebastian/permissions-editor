@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{inEditMode ? "Edit" : "Create"}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="fill-height">
+        <form [formGroup]="permissionsForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="text" [errorStateMatcher]="matcher" placeholder="Ex. Send you emails"/>
+                <mat-error *ngIf= "permissionsForm.get('text')!.hasError('maxlength') && !permissionsForm.get('text')!.hasError('required')">Category name cannot be longer than <strong>70 characters</strong></mat-error>
+                <mat-error *ngIf= "permissionsForm.get('text')!.hasError('required')">Permission text is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type" [errorStateMatcher]="matcher" [(value)]="selected" >
+                    <mat-option *ngFor="let category of categories" [value]="category.text">{{category.text}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf= "permissionsForm.get('type')!.hasError('required')">Category is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="spacer"></div>
+            <div class="submit-group">
+                <button type="submit" [disabled]="!permissionsForm.valid" mat-raised-button color="accent">Submit</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

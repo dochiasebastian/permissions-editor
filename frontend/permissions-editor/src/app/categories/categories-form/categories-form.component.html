@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{inEditMode ? "Edit" : "Create"}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="fill-height">
+        <form (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="input-text-form">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput [formControl]="categoryFormControl" [errorStateMatcher]="matcher" placeholder="Ex. Privacy"/>
+                <mat-error *ngIf= "categoryFormControl.hasError('maxlength') && !categoryFormControl.hasError('required')">Category name cannot be longer than <strong>20 characters</strong></mat-error>
+                <mat-error *ngIf= "categoryFormControl.hasError('required')">Category name is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="spacer"></div>
+            <div class="submit-group">
+                <button type="submit" [disabled]="!categoryFormControl.valid" mat-raised-button color="accent">Submit</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,50 @@
+<mat-card class="pref-display mat-elevation-z4">
+    <mat-card-title>
+        <mat-card-header>
+            <h1>Your preferences</h1>
+        </mat-card-header>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-error *ngIf="!preferences[1]" color="warn">You have not submitted any preferences yet!</mat-error>
+        <p *ngFor="let preference of preferences" [appColorFalsy]="preference.isAllowed">{{preference | titleOnly}}</p>
+    </mat-card-content>
+</mat-card>
+<div [ngClass]="classes" (click)="classes.push('showing')" (mouseleave)="!matSelect.panelOpen && onMouseLeave()">
+    <mat-card class="pop-up-card">
+        <div class="bar"></div>
+        <mat-card-title>
+            <mat-card-header>
+                <h1>Select your preferences</h1>
+            </mat-card-header>
+        </mat-card-title>
+        <mat-card-content>
+            <section>
+                <h2>Presets:</h2>
+                <mat-form-field appearance="fill" class="input-text-form">
+                    <mat-label>Type</mat-label>
+                    <mat-select #matSelect="matSelect" [(ngModel)]="selected" (ngModelChange)="onCategoryChange()">
+                        <mat-option *ngFor="let category of categories" [value]="category.text">{{category.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+            <section>
+                <h2>Permissions:</h2>
+                <form (ngSubmit)="onSubmit()">
+                    <div class="scroll-list-container">
+                        <mat-selection-list name="permissionsList" [(ngModel)]="selectedOptions" class="scroll-list">
+                            <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=permissions.length>
+                                <mat-list-option *cdkVirtualFor="let permission of permissions" [value]="permission"
+                                    [disabled]="permission.type === 'Necessary'">
+                                    <h3 matLine>{{permission.text}}</h3>
+                                    <p matLine>{{permission.type}}</p>
+                                </mat-list-option>
+                            </cdk-virtual-scroll-viewport>
+                        </mat-selection-list>
+                    </div>
+                    <button type="submit" mat-raised-button color="accent">Submit</button>
+                </form>
+            </section>
+        </mat-card-content>
+    </mat-card>
+</div>

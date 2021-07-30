@@ -1,0 +1,7 @@
+.scroll-list-container {
+    height: calc(100% - 80px);
+}
+
+.scroll-list {
+    height: 100%;
+}

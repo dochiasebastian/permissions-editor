@@ -1,0 +1,20 @@
+.fill-height {
+    height: calc(100% - 40px);
+}
+
+form {
+    height: calc(100% - 40px);
+    width: 100%;
+    display: flex;
+}
+
+.input-text-form {
+    width: 100%;
+    max-width: 300px;
+    min-width: 100px;
+}
+
+.submit-group {
+    float: right;
+    align-self: flex-end;
+}

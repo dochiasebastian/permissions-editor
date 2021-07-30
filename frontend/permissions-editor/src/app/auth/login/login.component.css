@@ -1,0 +1,30 @@
+mat-card {
+    width: 20vw;
+    margin: auto;
+    margin-top: 20vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card-header {
+    justify-content: center;
+}
+
+form {
+    flex-direction: column;
+    display: flex;
+}
+
+.input-text-form {
+    width: 100%;
+    max-width: 300px;
+    min-width: 100px;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+button {
+    float: right;
+    align-self: flex-end;
+}
