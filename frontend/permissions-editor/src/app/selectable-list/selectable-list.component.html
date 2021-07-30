@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+        <span class="spacer"></span>
+        <button mat-mini-fab color="primary" (click)="create()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" (click)="selectAll()">
+            <mat-icon>check_box_outline_blank</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" (click)="deleteSelected()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-header>
+    <mat-card-content class="scroll-list-container">
+        <mat-selection-list #itemsList [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)" class="scroll-list">
+            <cdk-virtual-scroll-viewport class="scrollable scroll-list" [itemSize]=list.length>
+                <mat-list-option *cdkVirtualFor="let item of list" (click)="selectItem(item)" [value]="item">
+                    <h3 matLine>{{item.text}}</h3>
+                    <p matLine *ngIf="item.type">{{item.type}}</p>
+                </mat-list-option>
+            </cdk-virtual-scroll-viewport>
+        </mat-selection-list>
+    </mat-card-content>
+</mat-card>

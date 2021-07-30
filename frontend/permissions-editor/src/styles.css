@@ -1,1 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+html { 
+    height: 100vh; 
+}
+
+body { 
+    height: 100vh;
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.account-btn {
+    right: 0;
+}
+
+mat-grid-tile mat-card {
+    height: 100%;
+    width: 100%;
+    padding: 40px !important;
+}
+
+mat-grid-tile mat-card mat-card-header{
+    margin-top: 40px;
+}
+
+mat-list-item:not(:first-of-type) {
+    border-top: 1px solid #efefef;
+}
+
+mat-list-item:hover {
+    cursor: pointer;
+    background: whitesmoke;
+}
+
+.scrollable {
+    overflow: auto;
+}
+
+.scrollable::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+
+.scrollable::-webkit-scrollbar-button {
+    display:none;
+}
+
+.mat-toolbar >.mat-mini-fab {
+    margin-right: 10px;
+}
+
+.mat-toolbar {
+    z-index: 900;
+    position: relative;
+}
+
+.mat-sidenav {
+    width: 200px;
+    padding-top: 10px;
+}
+
+.mat-sidenav .mat-list-item-content {
+    justify-content: center;
+}
+
+.mat-sidenav-container {
+    height: calc(100vh - 64px); 
+    background: #f5f5f5e0;
+    flex: 1;
+    z-index: -1;
+}
+
+.mat-card-header {
+    margin-bottom: 20px;
+}
+
+.mat-card-header .mat-card-title {
+    margin-top: 12px;
+}
+
+.mat-card-header button {
+    margin-left: 10px;
+}
+
+.mat-grid-tile .mat-figure {
+    align-items: unset !important;
+    justify-content: unset !important;
+}
