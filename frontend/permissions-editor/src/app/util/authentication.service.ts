@@ -16,7 +16,7 @@ export class AuthenticationService {
         private http: HttpClient,
         private cookieService: CookieService,
     ) {
-        this.currentUserSubject$ = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser') || ''));
+        this.currentUserSubject$ = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser') || JSON.stringify({_id:'', username: '', email: '', role: ''})));
         this.currentUser$ = this.currentUserSubject$.asObservable();
     }
 
@@ -25,18 +25,19 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/auth/login`, JSON.parse(`{"email": "${username}", "password": "${password}"}`))
-            .pipe(map(user => {
-                localStorage.setItem('currentUser$', JSON.stringify(user));
-                this.currentUserSubject$.next(user);
-                this.cookieService.set('user', user.token, undefined, '/');
+        return this.http.post<any>(`${environment.apiUrl}/auth/login`, JSON.stringify({ email: username, password: password }))
+            .pipe(
+                map(user => {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject$.next(user);
+                    this.cookieService.set('user', user.token, undefined, '/');
 
-                return user;
-            }));
+                    return user;
+                }));
     }
 
     logout() {
-        localStorage.removeItem('currentUser$');
+        localStorage.removeItem('currentUser');
         this.currentUserSubject$.next(null!);
         this.currentUser$ = null!;
         this.cookieService.delete('user');
@@ -44,17 +45,18 @@ export class AuthenticationService {
     }
 
     register(user: IUser) {
-        const userJson = JSON.parse(`{"name": "${user.username}", "email": "${user.email}", "role": "student", "password": "${user.password}"}`);
+        const userJson = JSON.stringify(user);
         console.log(userJson);
-        return this.http.post(`${environment.apiUrl}/auth/register`, userJson);
+        return this.http.post<any>(`${environment.apiUrl}/auth/register`, userJson);
     }
 
     getCurrentUser() {
-        console.log("Getting current user");
-        return this.http.get<any>(`${environment.apiUrl}/auth/me`, ).pipe(map(result => result['data']), tap(user => {
-            localStorage.setItem('currentUser$', JSON.stringify(user));
-            this.currentUserSubject$.next(user);
-            console.log(user);
-        }));
+        return this.http.get<any>(`${environment.apiUrl}/auth/me`,)
+            .pipe(map(result => result['data']),
+                tap(user => {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject$.next(user);
+                    return user;
+                }));
     }
 }

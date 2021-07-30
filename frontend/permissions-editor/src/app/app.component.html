@@ -4,12 +4,13 @@
     </span>
     <span class="spacer"></span>
     <button mat-mini-fab [matMenuTriggerFor]="menu">
-        <mat-icon aria-hidden="true" >person</mat-icon>
+        <mat-icon aria-hidden="true">person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <p mat-menu-item disabled>Not Logged in</p>
-        <button mat-menu-item>Log In</button>
-        <button mat-menu-item>Sign Up</button>
+        <p mat-menu-item [disabled]="!currentUser.name">{{currentUser.name ? currentUser.name : 'Not Logged In'}}</p>
+        <a *ngIf="!currentUser.name" routerLink="auth/login" mat-menu-item>Log In</a>
+        <a *ngIf="!currentUser.name" routerLink="auth/signup" mat-menu-item>Sign Up</a>
+        <a *ngIf="currentUser.name" routerLink="auth/login" mat-menu-item (click)="logout()">Log Out</a>
     </mat-menu>
 </mat-toolbar>
 
@@ -23,8 +24,8 @@
             <a routerLink="/preview" routerLinkActive="active" mat-list-item>Preview</a>
         </mat-nav-list>
     </mat-sidenav>
-    
+
     <mat-sidenav-container>
         <router-outlet></router-outlet>
-    </mat-sidenav-container>   
+    </mat-sidenav-container>
 </mat-sidenav-container>
